@@ -29,6 +29,5 @@ if (isset($_POST['submit'])){
         <br>
         <button type=submit name="submit">Logga in</button>
 
-<p>jdoafhieqihdsgiukdah</p>
     </body>
 </html>
