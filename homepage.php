@@ -599,6 +599,7 @@ setUpdate(() => {
         }
         if (pointcounter > lifetimescore) {
             lifetimescore = pointcounter
+            fetch("writescore.php?score="+lifetimescore)
         }
         rectangle(0, 0, W, H, "white")
         text("$" + money, 20, H - 20, "", "Black")
