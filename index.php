@@ -30,6 +30,12 @@ include '../config.php';
         <input type="password" name="pass">
         <br>
         <button type=submit name="submit">Logga in</button>
+        <br>
+        <p>
+        Användarnamn är valfritt
+        <br>
+        Lösen är 1234
+        </p>
 
     </body>
 </html>
