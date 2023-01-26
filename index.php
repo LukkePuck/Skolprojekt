@@ -4,7 +4,7 @@ if (isset($_POST['submit'])){
     if ($_POST['pass']=="1234"){
         $_SESSION['username'] =$_POST['user'];
         $_SESSION['L']=true;
-        header("location: homepage.php");
+        header("location: hub.php");
         exit();
     }
 }
