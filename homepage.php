@@ -540,7 +540,7 @@ setUpdate(() => {
         rectangle(W / 5 - 50, H / 5 + 130, 150, 60, "red")
         text("Start", W / 5 - 35, H / 5)
         text("Customize", W / 5 - 35, H / 5 + 80)
-        text("Settings", W / 5 - 35, H / 5 + 155)
+        text("Quit", W / 5 - 35, H / 5 + 155)
         //gameicon
         // circle(W / 2 + 30, H / 2 - 100, 40, "darkorange")
         // rectangle(W / 2 + 15, H / 2 - 150, 40, 20, skincolor)
