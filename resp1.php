@@ -8,5 +8,6 @@ if (strlen($v) > 0) {
 }
 $db = new PDO("mysql:host=localhost;dbname={$dbprefix}PROJEKT;charset=utf8",
     $username, $password);
-    INSERT INTO `username` (`användare`, `lösenord`, `poäng`, `totalpoäng`, `toppoäng`) VALUES ('Leo', '1234', '0', '0', '0');
+    
+    $sql = "UPDATE * INTO `username` (`användare`, `lösenord`, `poäng`, `totalpoäng`, `toppoäng`) VALUES ('Leo', '1234', '0', '0', '0');"
 ?>
