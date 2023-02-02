@@ -8,6 +8,9 @@ if (isset($_POST['submit'])){
         exit();
     }
 }
+if (isset($_POST['nytt'])){
+    header("location: admin.php");
+}
 
 include '../config.php';
 
@@ -31,11 +34,7 @@ include '../config.php';
         <br>
         <button type=submit name="submit">Logga in</button>
         <br>
-        <p>
-        Användarnamn är valfritt
-        <br>
-        Lösen är 1234
-        </p>
+        <button type=submit name="nytt">Skapa nytt konto</button>
 
     </body>
 </html>
