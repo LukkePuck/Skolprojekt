@@ -1,16 +1,22 @@
 <?php
 session_start();
-    if (isset($_POST['home'])){
-    header("location: index.php");
-    }
-// if('name'||'pass' != 1){
-//     INSERT INTO `username` (`användare`, `lösenord`, `poäng`, `totalpoäng`, `toppoäng`) VALUES ('name', 'pass', '0', '0', '0');
-// }
+$db = new PDO("mysql:host=localhost;dbname={$dbprefix}PROJEKT;charset=utf8",
+    $username, $password);
 
+if (isset($_POST['home'])){
+header("location: index.php");
+}
+
+if (isset($_POST['nytt'])){
+$sql = "INSERT INTO 'username' ('användare', 'lösenord', 'poäng', 'totalpoäng', 'toppoäng') VALUES ('name', 'pass', '0', '0', '0')";
+}
+
+include '../config.php';
 ?>
 
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sv">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
