@@ -1,5 +1,6 @@
 <?php
 session_start();
+include '../config.php';
 $db = new PDO("mysql:host=localhost;dbname={$dbprefix}PROJEKT;charset=utf8",
     $username, $password);
 
@@ -11,7 +12,6 @@ if (isset($_POST['nytt'])){
 $sql = "INSERT INTO 'username' ('användare', 'lösenord', 'poäng', 'totalpoäng', 'toppoäng') VALUES ('name', 'pass', '0', '0', '0')";
 }
 
-include '../config.php';
 ?>
 
 
