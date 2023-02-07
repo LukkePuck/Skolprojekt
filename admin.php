@@ -1,3 +1,12 @@
+<?php
+session_start();
+    if (isset($_POST['home'])){
+    header("location: index.php");
+    }
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,6 +26,8 @@
         <input type="password" name="pass"></input>
         <br>
         <button type="nytt" name="nytt">Skapa nytt konto</button>
+        <br>
+        <button type="home" name="home">Ångra</button>
     </form>
 </body>
 </html>
