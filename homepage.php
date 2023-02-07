@@ -665,7 +665,7 @@ setUpdate(() => {
         text("$" + money, 20, H - 20, "", "Black")
         //gametimer
         if (timertimer > 0) {
-            timertimer -= 0.15
+            timertimer -= 0.05
         }
         if (timertimer < 0) {
             gameon = false
