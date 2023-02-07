@@ -3,7 +3,9 @@ session_start();
     if (isset($_POST['home'])){
     header("location: index.php");
     }
-
+// if('name'||'pass' != 1){
+//     INSERT INTO `username` (`användare`, `lösenord`, `poäng`, `totalpoäng`, `toppoäng`) VALUES ('name', 'pass', '0', '0', '0');
+// }
 
 ?>
 
