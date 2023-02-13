@@ -1,5 +1,6 @@
 <?php 
 session_start();
+include '../config.php';
 if (isset($_POST['submit'])){
     if ($_POST['pass']=="1234"){
         $_SESSION['username'] =$_POST['user'];
@@ -12,7 +13,6 @@ if (isset($_POST['nytt'])){
     header("location: admin.php");
 }
 
-include '../config.php';
 
 
 
