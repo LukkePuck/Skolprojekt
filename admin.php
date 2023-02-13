@@ -7,12 +7,30 @@ $db = new PDO("mysql:host=localhost;dbname={$dbprefix}PROJEKT;charset=utf8",
 if (isset($_POST['home'])){
 header("location: index.php");
 }
-
 if (isset($_POST['nytt'])){
-$sql = "INSERT INTO 'username' ('användare', 'lösenord', 'poäng', 'totalpoäng', 'toppoäng') VALUES ('name', 'pass', '0', '0', '0')";
-}
+    $user = $_POST['user'];
+    $pass = $_POST['pass'];
+    $sql = "INSERT INTO username (username,passw,poäng,totalpoints,toppoints) VALUES('$user','$pass','0','0','0')";
+    
+    echo "Data added successfully.";
+    }
+    
+            
+    
+    
+
+
+
+
+
+
+    
 
 ?>
+
+
+
+
 
 
 <!DOCTYPE html>
@@ -24,16 +42,16 @@ $sql = "INSERT INTO 'username' ('användare', 'lösenord', 'poäng', 'totalpoän
     <title>Admin</title>
 </head>
 <body>
-    <form method="post">
+    <form method='post'>
         <label for="user">Användarnamn</label>
         <br>
-        <input type="text" name="user"  ></input>
+        <input name='user' ></input>
         <br>
-        <label for="pass">lösenord</label>
+        <label for='pass'>lösenord</label>
         <br>
-        <input type="password" name="pass"></input>
+        <input type='pass' name='pass'></input>
         <br>
-        <button type="nytt" name="nytt">Skapa nytt konto</button>
+        <button name='nytt' >Skapa nytt konto</button>
         <br>
         <button type="home" name="home">Ångra</button>
     </form>
