@@ -10,28 +10,16 @@ header("location: index.php");
 if (isset($_POST['nytt'])){
     $user = $_POST['user'];
     $pass = $_POST['pass'];
-    $sql = "INSERT INTO username (username,passw,poäng,totalpoints,toppoints) VALUES('$user','$pass','0','0','0')";
-    
+    $sql = "INSERT INTO username (username,password,points,totalpoints,toppoints) VALUES('$user','$pass','0','0','0')";
+    $ps = $db->prepare($sql);
+    $ps->execute();
+
+
+
+
     echo "Data added successfully.";
     }
-    
-            
-    
-    
-
-
-
-
-
-
-    
-
 ?>
-
-
-
-
-
 
 <!DOCTYPE html>
 <html lang="sv">
@@ -45,7 +33,7 @@ if (isset($_POST['nytt'])){
     <form method='post'>
         <label for="user">Användarnamn</label>
         <br>
-        <input name='user' ></input>
+        <input name='user'></input>
         <br>
         <label for='pass'>lösenord</label>
         <br>
