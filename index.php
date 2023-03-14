@@ -7,7 +7,7 @@ if (isset($_POST['submit'])){
         header("location: hub.php");
         exit();
     }
-}
+
 if (isset($_POST['nytt'])){
     header("location: admin.php");
 }
