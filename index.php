@@ -3,12 +3,28 @@ session_start();
 include '../config.php';
 $db = new PDO("mysql:host=localhost;dbname={$dbprefix}PROJEKT;charset=utf8",
     $username, $password);
-if (isset($_POST['submit'])){
 
-    $sql = "SELECT * FROM username WHERE username='user' AND password='pass'";
+    if (isset($_POST['submit'])){
+        
+        $user = $_POST['user'];
+        $pass = $_POST['pass'];
 
+    $sql = "SELECT * FROM username WHERE username='$user' AND password='$pass'";
+    $ps = $db->prepare($sql);
+    $ps->execute();¨
+
+    $result = $db->query($sql);
+
+    if ($result->num_rows == 1){
+
+        echo "login Successful";
         header("location: hub.php");
         exit();
+    }
+    else {
+        echo "login failed";
+    }
+
     }
 
 if (isset($_POST['nytt'])){

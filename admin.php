@@ -10,9 +10,13 @@ header("location: index.php");
 if (isset($_POST['nytt'])){
     $user = $_POST['user'];
     $pass = $_POST['pass'];
-    $sql = "INSERT INTO username (username,password,) VALUES('$user','$pass')";
+    $sql = "INSERT INTO username (username,password) VALUES('$user','$pass')";
     $ps = $db->prepare($sql);
     $ps->execute();
+    $sql = "INSERT INTO Score (username) VALUES('$user')";
+    $ps = $db->prepare($sql);
+    $ps->execute();
+
 
 
 
