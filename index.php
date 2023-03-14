@@ -1,9 +1,12 @@
 <?php 
 session_start();
 include '../config.php';
+$db = new PDO("mysql:host=localhost;dbname={$dbprefix}PROJEKT;charset=utf8",
+    $username, $password);
 if (isset($_POST['submit'])){
-    
-    
+
+    $sql = "SELECT * FROM username WHERE username='user' AND password='pass'";
+
         header("location: hub.php");
         exit();
     }
