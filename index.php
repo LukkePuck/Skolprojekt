@@ -5,17 +5,15 @@ $db = new PDO("mysql:host=localhost;dbname={$dbprefix}PROJEKT;charset=utf8",
     $username, $password);
 
     if (isset($_POST['submit'])){
-        
         $user = $_POST['user'];
         $pass = $_POST['pass'];
+        $_SESSION['user']= $user;
 
     $sql = "SELECT * FROM username WHERE username='$user' AND password='$pass'";
     $ps = $db->prepare($sql);
-    $ps->execute();¨
+    $ps->execute();
 
-    $result = $db->query($sql);
-
-    if ($result->num_rows == 1){
+    if ($ps->fetch()){    
 
         echo "login Successful";
         header("location: hub.php");

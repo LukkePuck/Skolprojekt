@@ -2,12 +2,6 @@
 <?php
 session_start();
 
-if ($_SESSION['L']==true){
-
-} else  {
-    header("location: index.php");
-}
-
 
 
 if (isset($_POST['submit'])){
@@ -26,7 +20,7 @@ exit();
 </head>
 <body>
     <?php
-    echo "<h1>Welcome $_SESSION[username]</h1>";
+    echo '<h1> Welcome ' . $_SESSION['user'] . '</h1>';
     ?>
     <form method="post"> 
     <button id="knapp" type=submit name="submit">Spelsidan</button>

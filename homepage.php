@@ -1,14 +1,9 @@
 <?php
 session_start();
 
-if ($_SESSION['L']==true){
 
-} else  {
-    header("location: index.php");
-}
-if (isset($_GET['submit'])){
-    session_unset();
-    header("location: index.php");
+if (isset($_POST['quit'])){
+    header("location: hub.php");
 
 }
 ?>
@@ -20,6 +15,18 @@ if (isset($_GET['submit'])){
     <script src="app.js" type="module"></script>
     </head>
     <body>
+
+    <form method="post">
+<button name="quit" >quit</button>
+
+
+
+
+    </form>
+
+
+
+
         <script>
        let balling = true
 let idle = false
