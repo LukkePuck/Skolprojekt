@@ -1084,6 +1084,8 @@ if (!document.querySelector("canvas[is=balder-canvas]")) {
     document.body.append(canvas);
     canvas.style.minHeight = "150px";
     canvas.style.minWidth = "300px";
+    canvas.style.maxHeight = "500px";
+    canvas.style.maxWidth = "700px";
     canvas.style.flex = "1";
     const style = document.createElement('style'); // 5.0
     document.head.appendChild(style);

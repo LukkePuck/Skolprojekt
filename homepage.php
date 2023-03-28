@@ -28,7 +28,9 @@ if (isset($_POST['quit'])){
 
 
         <script>
-       let balling = true
+W = 500
+H = 500
+let balling = true
 let idle = false
 let running = false
 let jump = false
@@ -672,12 +674,12 @@ setUpdate(() => {
         text("$" + money, 20, H - 20, "", "Black")
         //gametimer
         if (timertimer > 0) {
-            timertimer -= 0.05
+            timertimer -= 0.015
         }
         if (timertimer < 0) {
             gameon = false
             gameover = true
-            timertimer = 100
+            timertimer = 300
         }
         //Stats
         if (debugmenu == true) {
