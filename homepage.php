@@ -4,7 +4,9 @@ session_start();
 
 if (isset($_POST['quit'])){
     header("location: hub.php");
-
+}
+if (isset($_POST['writescore'])){
+    header("location: writescore.php");
 }
 ?>
 <html>
@@ -18,6 +20,7 @@ if (isset($_POST['quit'])){
 
     <form method="post">
 <button name="quit" >quit</button>
+<button name="writescore" >scorechecker</button>
 
 
 
@@ -798,9 +801,6 @@ setUpdate(() => {
         }
 
 
-
-
-
         //timing game
         function newhitter() {
             hitterrandom = randomInt(0, 270)
@@ -887,7 +887,9 @@ setUpdate(() => {
         }
 
 
-
+if(keyboard.o){
+    pointcounter+=1
+}
 
         //Force
         if (forcing == true) {

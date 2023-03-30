@@ -16,7 +16,7 @@ $db = new PDO("mysql:host=localhost;dbname={$dbprefix}PROJEKT;charset=utf8",
     if ($ps->fetch()){    
 
         echo "login Successful";
-        header("location: hub.php");
+        header("location: homepage.php");
         exit();
     }
     else {
