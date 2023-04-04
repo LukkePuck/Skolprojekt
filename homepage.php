@@ -13,7 +13,6 @@ if (isset($_POST['writescore'])){
     <head>
         <title>Multi Page v1</title>
         <script src="balder.js" defer></script>
-        <link rel="stylesheet" href="style.css">
     <script src="app.js" type="module"></script>
     </head>
     <body>
@@ -31,8 +30,7 @@ if (isset($_POST['writescore'])){
 
 
         <script>
-W = 500
-H = 500
+
 let balling = true
 let idle = false
 let running = false
@@ -554,12 +552,6 @@ setUpdate(() => {
         text("Customize", W / 5 - 35, H / 5 + 80)
         text("Quit", W / 5 - 35, H / 5 + 155)
         //gameicon
-        // circle(W / 2 + 30, H / 2 - 100, 40, "darkorange")
-        // rectangle(W / 2 + 15, H / 2 - 150, 40, 20, skincolor)
-        // rectangle(W / 2 + 35, H / 2 - 145, 40, 20, skincolor)
-        // rectangle(W / 2 + 65, H / 2 - 135, 20, 60, skincolor)
-        // rectangle(W / 2 + 70, H / 2 - 85, 25, 60, skincolor)
-        // rectangle(W / 2 + 70, H / 2 - 85, 25, 60, shirtcolor)
         if (mouse.x > W / 5 - 50 && mouse.x < W / 5 + 100) {
             if (mouse.y > H / 5 - 30 && mouse.y < H / 5 + 30) {
                 if (mouse.left) {
@@ -611,7 +603,7 @@ setUpdate(() => {
         }
         if (pointcounter > lifetimescore) {
             lifetimescore = pointcounter
-            fetch("writescore.php?score="+lifetimescore)
+            //fetch("writescore.php?score="+lifetimescore)
         }
         rectangle(0, 0, W, H, "white")
         text("$" + money, 20, H - 20, "", "Black")
@@ -646,13 +638,13 @@ setUpdate(() => {
         rectangle(0, 8 * (H / 9) - 120, W, 60, "grey")
         rectangle(0, 8 * (H / 9) - 120, W, 10, "darkgrey")
         //Real Background
-        if (backgroundseats == true) {
+        if (backgroundseats != true) {
             // viewer(100, 100)
-            for (let y = 0; y < (H / 60) - 1; y += 1) {
-                for (let i = 0; i < (W / 60) + 180; i += 1) {
-                    viewer(60 * i + y * -20, 50 * y + 25,)
-                }
-            }
+            // for (let y = 0; y < (H / 60) - 1; y += 1) {
+            //     for (let i = 0; i < (W / 60) + 180; i += 1) {
+            //         viewer(60 * i + y * -20, 50 * y + 25,)
+            //     }
+            // }
             rectangle(0, 8 * (H / 9) - 40, W, 60, "orange")
         }
         //hitbox
