@@ -57,7 +57,7 @@ let ballchecker = false
 let netcolor = "white"
 let colors5 = ["darkblue", "darkred", "darkgreen", "darkyellow", "darkorange"]
 let textcolor = "white"
-let timertimer = 100
+let timertimer = 20
 let basketheighty = H / 2
 let tittarfärgtröja = "green"
 let tittarfärgbyxor = "brown"
@@ -572,12 +572,30 @@ setUpdate(() => {
 
     if (gameover == true) {
         moneyearned = pointcounter
+
+        var xmlhttp = new XMLHttpRequest();
+
+        xmlhttp.open("POST", "writescore.php", true);
+
+        xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+
+        xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        // Code to handle successful insertion into the database
+    }
+
+    var data = "value=" + encodeURIComponent(moneyearned);
+    xmlhttp.send(data);
+
+};
+
+
         if (money < moneyearned) {
             money += moneyearned
         }
         if (pointcounter > lifetimescore) {
             lifetimescore = pointcounter
-            //fetch("writescore.php?score=" += lifetimescore)
         }
         rectangle(0, 0, W, H, "white")
         text("$" + money, 20, H - 20, "", "Black")
@@ -648,7 +666,7 @@ setUpdate(() => {
         if (timertimer < 0) {
             gameon = false
             gameover = true
-            timertimer = 300
+            timertimer = 20
         }
         //Stats
         if (debugmenu == true) {
