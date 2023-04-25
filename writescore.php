@@ -5,12 +5,17 @@ $db = new PDO("mysql:host=localhost;dbname={$dbprefix}PROJEKT;charset=utf8",
     $username, $password);
 
     $user = $_SESSION['user'];
-    
-    $value = $_POST['value'];
-// Code to insert $value into the database
+    $score = $_GET['score'];
+    // $value = $_POST['value'];
+    // if ($value == null) {
+    //     $value = 0;
+    //     }
+
+    // echo '<h1>welcome ' . $_SESSION['user'] . '</h1>';
+    // echo '<h1>Your points are ' . $value . '</h1>';
 
 
-    $sql = "INSERT INTO Score (username,score) VALUES('$user','$value')";
+    $sql = "INSERT INTO Score (username,score) VALUES('$user','$score')";
     $ps = $db->prepare($sql);
     $ps->execute();
 ?>

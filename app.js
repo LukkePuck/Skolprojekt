@@ -570,25 +570,15 @@ setUpdate(() => {
 
     }
 
-    if (gameover == true) {
+    if (gameover) {
         moneyearned = pointcounter
 
-        var xmlhttp = new XMLHttpRequest();
-
-        xmlhttp.open("POST", "writescore.php", true);
-
-        xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-
-        xmlhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-        // Code to handle successful insertion into the database
+        console.log(602);
+        
+        await fetch("writescore.php/?score=" + moneyearned);
+        console.log(605);
     }
 
-    var data = "value=" + encodeURIComponent(moneyearned);
-    xmlhttp.send(data);
-
-};
 
 
         if (money < moneyearned) {
@@ -614,10 +604,10 @@ setUpdate(() => {
                     pointcounter = 0
                 }
             }
-
+        }
         }
 
-    }
+    
     if (gameon == true) {
         clear()
         moneyearned = 0
