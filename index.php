@@ -7,7 +7,7 @@ $db = new PDO("mysql:host=localhost;dbname={$dbprefix}PROJEKT;charset=utf8",
     if (isset($_POST['submit'])){
         $user = $_POST['user'];
         $pass = $_POST['pass'];
-        $_SESSION['user']= $user;
+        $_SESSION['user'] = $user;
 
     $sql = "SELECT * FROM username WHERE username='$user' AND password='$pass'";
     $ps = $db->prepare($sql);
@@ -16,7 +16,7 @@ $db = new PDO("mysql:host=localhost;dbname={$dbprefix}PROJEKT;charset=utf8",
     if ($ps->fetch()){    
 
         echo "login Successful";
-        header("location: homepage.php");
+        header("location: hub.php");
         exit();
     }
     else {

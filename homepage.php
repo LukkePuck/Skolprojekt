@@ -41,8 +41,8 @@ let visaboll = false
 let bollx = 190
 let bolly = 0
 let hairlength = 10
-let xpos = 100
-let ypos = 100
+let xpos = 500
+let ypos = 0
 let skincolor = rgba(210, 161, 140)
 let haircolor = rgba(0, 0, 0)
 let run = true
@@ -89,7 +89,11 @@ let ballchecker = false
 let netcolor = "white"
 let colors5 = ["darkblue", "darkred", "darkgreen", "darkyellow", "darkorange"]
 let textcolor = "white"
-let timertimer = 100
+<<<<<<< HEAD
+let timertimer = 10
+=======
+let timertimer = 20
+>>>>>>> 7e7f9ba244f1892f3516f2b5ad76e81ffe3bfb34
 let basketheighty = H / 2
 let tittarfärgtröja = "green"
 let tittarfärgbyxor = "brown"
@@ -143,29 +147,7 @@ class timingstick {
 
     }
 }
-class tori {
-    constructor(
-        public torix: number,
-        public toriy: number
-    ) { }
-    update() {
-        //main body
-        // rectangle(torix, toriy, 40, 30, toricolor)
-        // rectangle(torix + 40, toriy + 5, 30, 20, toricolor)
-        // rectangle(torix - 40, toriy + 5, 40, 17.5, toricolor)
-        // rectangle(torix - 80, toriy + 7.5, 40, 10, "yellow")
-        // //head
-        // rectangle(torix + 70, toriy, 40, 20, toricolor)
-        // //legs
-        // rectangle(torix - 3, toriy + 25, 5, 15, toricolor)
-        // rectangle(torix - 5, toriy + 33, 5, 10, toricolor)
-        // rectangle(torix, toriy + 40, 10, 5, toricolor)
-        // rectangle(torix + 7.5, toriy + 42.5, 5, 5, toricolor)
-        // //wings
-        // rectangle(torix, toriy, 50, toriwingl, "green")
 
-    }
-}
 class ball {
     v0 = 100
     constructor(
@@ -596,14 +578,25 @@ setUpdate(() => {
 
     }
 
-    if (gameover == true) {
+    if (gameover) {
         moneyearned = pointcounter
+
+        console.log(602);
+        
+        await fetch("writescore.php/?score=" + moneyearned);
+        console.log(605);
+    }
+
+
         if (money < moneyearned) {
             money += moneyearned
         }
         if (pointcounter > lifetimescore) {
             lifetimescore = pointcounter
-            //fetch("writescore.php?score="+lifetimescore)
+<<<<<<< HEAD
+            fetch("writescore.php?score="+lifetimescore)
+=======
+>>>>>>> 7e7f9ba244f1892f3516f2b5ad76e81ffe3bfb34
         }
         rectangle(0, 0, W, H, "white")
         text("$" + money, 20, H - 20, "", "Black")
@@ -671,10 +664,10 @@ setUpdate(() => {
         if (timertimer > 0) {
             timertimer -= 0.015
         }
-        if (timertimer < 0) {
+        if (timertimer < 1) {
             gameon = false
             gameover = true
-            timertimer = 300
+            timertimer = 20
         }
         //Stats
         if (debugmenu == true) {
@@ -877,7 +870,7 @@ setUpdate(() => {
             timing = false
             timingcounter2 = 0
         }
-
+rectangle(0,0,100,100)
 
 if(keyboard.o){
     pointcounter+=1
@@ -1151,13 +1144,13 @@ if(keyboard.o){
 
         b1.update()
         //korg
-        rectangle(W - 70, H / 2 - 102, 70, 5, "black")
-        rectangle(W - 5, H / 2 - 152, 5, 70, "red")
         p1.update()
         ts.update()
+        rectangle(W - 70, H / 2 - 102, 70, 5, "black")
+        rectangle(W - 5, H / 2 - 152, 5, 70, "red")
     }
 })
 </script>
-        
+
     </body>
 </html>

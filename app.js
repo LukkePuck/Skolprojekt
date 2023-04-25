@@ -9,7 +9,7 @@ let visaboll = false
 let bollx = 190
 let bolly = 0
 let hairlength = 10
-let xpos = 100
+let xpos = 500
 let ypos = 100
 let skincolor = rgba(210, 161, 140)
 let haircolor = rgba(0, 0, 0)
@@ -57,11 +57,14 @@ let ballchecker = false
 let netcolor = "white"
 let colors5 = ["darkblue", "darkred", "darkgreen", "darkyellow", "darkorange"]
 let textcolor = "white"
-let timertimer = 100
+<<<<<<< HEAD
+let timertimer = 10
+=======
+let timertimer = 20
+>>>>>>> 7e7f9ba244f1892f3516f2b5ad76e81ffe3bfb34
 let basketheighty = H / 2
 let tittarfärgtröja = "green"
 let tittarfärgbyxor = "brown"
-let tittarskinnfärg = "rgba(210, 161, 140)"
 let gameon = false
 let pointcheck = false
 let shopmenu = false
@@ -141,6 +144,7 @@ class ball {
     constructor(
     ) { }
     update() {
+        bolly = 260
         rectangle(xpos + bollx + 70 - 90, hoppbolly + bolly + 115 + 80, 22, 18, ballcolor)
         rectangle(xpos + bollx + 72 - 90, hoppbolly + bolly + 115 + 78, 18, 22, ballcolor)
         rectangle(xpos + bollx + 73 - 90, hoppbolly + bolly + 115 + 78, 1, 22)
@@ -246,6 +250,8 @@ class player {
     constructor(
     ) { }
     update() {
+        this.x = 100
+        this.y = 300
         handY = this.y
         if (jump == true) {
             //hoppandeben
@@ -570,14 +576,22 @@ setUpdate(() => {
 
     }
 
-    if (gameover == true) {
+    if (gameover) {
         moneyearned = pointcounter
+
+        console.log(602);
+        
+        await fetch("writescore.php/?score=" + moneyearned);
+        console.log(605);
+    }
+
+
+
         if (money < moneyearned) {
             money += moneyearned
         }
         if (pointcounter > lifetimescore) {
             lifetimescore = pointcounter
-            //fetch("writescore.php?score=" += lifetimescore)
         }
         rectangle(0, 0, W, H, "white")
         text("$" + money, 20, H - 20, "", "Black")
@@ -596,10 +610,10 @@ setUpdate(() => {
                     pointcounter = 0
                 }
             }
-
+        }
         }
 
-    }
+    
     if (gameon == true) {
         clear()
         moneyearned = 0
@@ -648,7 +662,11 @@ setUpdate(() => {
         if (timertimer < 0) {
             gameon = false
             gameover = true
-            timertimer = 300
+<<<<<<< HEAD
+            timertimer = 10
+=======
+            timertimer = 20
+>>>>>>> 7e7f9ba244f1892f3516f2b5ad76e81ffe3bfb34
         }
         //Stats
         if (debugmenu == true) {
@@ -712,7 +730,8 @@ setUpdate(() => {
         //Jumping stuff
         if (idle == true) {
             if (jump == true) {
-                bolly = 100
+                bolly = 2200
+
             }
         }
         //Balling Code
@@ -734,7 +753,7 @@ setUpdate(() => {
         } else {
             if (idle == true) {
                 if (jump == true) {
-                    bolly = -40
+                    bolly = -100
                     bollx = 155
                 }
                 if (idle == true) {
@@ -1125,10 +1144,10 @@ setUpdate(() => {
 
         b1.update()
         //korg
-        rectangle(W - 70, H / 2 - 102, 70, 5, "black")
-        rectangle(W - 5, H / 2 - 152, 5, 70, "red")
         p1.update()
         ts.update()
+        rectangle(W - 70, H / 2 - 102, 70, 5, "black")
+        rectangle(W - 5, H / 2 - 152, 5, 70, "red")
     }
 })
 //# sourceMappingURL=app.js.map

@@ -21,7 +21,7 @@ exit();
 <body>
     <?php
     echo '<h1> Welcome ' . $_SESSION['user'] . '</h1>';
-    echo '<h1> Your points are '.$v .'</h1>';
+    echo '<h1> Your points are '.$value .'</h1>';
     ?>
     <form method="post"> 
     <button id="knapp" type=submit name="submit">Spelsidan</button>
