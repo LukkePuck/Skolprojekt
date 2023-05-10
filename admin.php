@@ -13,9 +13,9 @@ if (isset($_POST['nytt'])){
     $sql = "INSERT INTO username (username,password) VALUES('$user','$pass')";
     $ps = $db->prepare($sql);
     $ps->execute();
-    $sql = "INSERT INTO Score (username) VALUES('$user')";
-    $ps = $db->prepare($sql);
-    $ps->execute();
+    // $sql = "INSERT INTO Score (username) VALUES('$user')";
+    // $ps = $db->prepare($sql);
+    // $ps->execute();
 
 
 

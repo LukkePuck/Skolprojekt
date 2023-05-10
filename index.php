@@ -37,20 +37,28 @@ if (isset($_POST['nytt'])){
 <html>
     <head>
 <title>Projekt</title>
+<link rel="stylesheet" href="index.css">
     </head>
     <body>
-    <form method="post">
-        <label for="user">Användarnamn</label>
-        <br>
-        <input type="text" name="user">
-        <br>
-        <label for="pass">Lösenord:</label>
-        <br>
-        <input type="password" name="pass">
-        <br>
-        <button type=submit name="submit">Logga in</button>
-        <br>
-        <button type=submit name="nytt">Skapa nytt konto</button>
+        <div>
+            <H1>Lucas Och Leos Webbplats</H1>
+            <form method="post">
+            <div class="button">
+                <div class="button">
+
+                    <label for="user" class="text">Användarnamn</label>
+                    <br>
+                    <input type="text" name="user">
+                </div>
+                <div class="button">
+                    <label for="pass" class="text">Lösenord:</label>
+                    <br>
+                    <input type="password" name="pass">
+                </div>
+                <button type=submit name="submit">Logga in</button>            
+                <button type=submit name="nytt">Skapa nytt konto</button>
+            </div>
+        </div>
 
     </body>
 </html>

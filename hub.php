@@ -1,8 +1,19 @@
 <!DOCTYPE html>
 <?php
 session_start();
+include '../config.php';
+$db = new PDO("mysql:host=localhost;dbname={$dbprefix}PROJEKT;charset=utf8",
+    $username, $password);
+$sql = "SELECT * FROM score WHERE username='$username'";
+$ps = $db->prepare($sql);
+$ps->execute();
 
+while ($row = $ps->fetch()) {
+    $_GET['user'] = $row['username'];
+    $score = $row['score'];
 
+    echo "$username  $score";
+}
 
 if (isset($_POST['submit'])){
 header("location: homepage.php");
@@ -21,7 +32,6 @@ exit();
 <body>
     <?php
     echo '<h1> Welcome ' . $_SESSION['user'] . '</h1>';
-    echo '<h1> Your points are '.$value .'</h1>';
     ?>
     <form method="post"> 
     <button id="knapp" type=submit name="submit">Spelsidan</button>
