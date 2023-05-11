@@ -90,7 +90,11 @@ let netcolor = "white"
 let colors5 = ["darkblue", "darkred", "darkgreen", "darkyellow", "darkorange"]
 let textcolor = "white"
 <<<<<<< HEAD
+<<<<<<< HEAD
 let timertimer = 10
+=======
+let timertimer = 20
+>>>>>>> 7e7f9ba244f1892f3516f2b5ad76e81ffe3bfb34
 =======
 let timertimer = 20
 >>>>>>> 7e7f9ba244f1892f3516f2b5ad76e81ffe3bfb34
@@ -594,7 +598,10 @@ setUpdate(() => {
         if (pointcounter > lifetimescore) {
             lifetimescore = pointcounter
 <<<<<<< HEAD
+<<<<<<< HEAD
             fetch("writescore.php?score="+lifetimescore)
+=======
+>>>>>>> 7e7f9ba244f1892f3516f2b5ad76e81ffe3bfb34
 =======
 >>>>>>> 7e7f9ba244f1892f3516f2b5ad76e81ffe3bfb34
         }

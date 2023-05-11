@@ -32,6 +32,10 @@ exit();
 <body>
     <?php
     echo '<h1> Welcome ' . $_SESSION['user'] . '</h1>';
+<<<<<<< HEAD
+=======
+    echo '<h1> Your points are '.$value .'</h1>';
+>>>>>>> 7e7f9ba244f1892f3516f2b5ad76e81ffe3bfb34
     ?>
     <form method="post"> 
     <button id="knapp" type=submit name="submit">Spelsidan</button>
