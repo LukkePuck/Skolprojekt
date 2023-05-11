@@ -57,15 +57,7 @@ let ballchecker = false
 let netcolor = "white"
 let colors5 = ["darkblue", "darkred", "darkgreen", "darkyellow", "darkorange"]
 let textcolor = "white"
-<<<<<<< HEAD
-<<<<<<< HEAD
 let timertimer = 10
-=======
-let timertimer = 20
->>>>>>> 7e7f9ba244f1892f3516f2b5ad76e81ffe3bfb34
-=======
-let timertimer = 20
->>>>>>> 7e7f9ba244f1892f3516f2b5ad76e81ffe3bfb34
 let basketheighty = H / 2
 let tittarfärgtröja = "green"
 let tittarfärgbyxor = "brown"
@@ -487,7 +479,7 @@ let buy1 = new buybox1("Green Shirt", 100, 50, 100)
 
 handpos = ypos + handY - 10
 
-setUpdate(() => {
+setUpdate(async () => {
     if (keyboard.k) {
         money += 1000000
     }
@@ -615,547 +607,539 @@ setUpdate(() => {
             }
         }
     }
-}
 
-    
+
+
     if (gameon == true) {
-    clear()
-    moneyearned = 0
-    //Background
-    rectangle(0, 0, W, H, "grey")
-    rectangle(0, 8 * (H / 9) - 61, W, 21, "darkorange")
-    rectangle(W / 2 + 7, 8 * (H / 9) - 60, 10, 20, "lightgrey")
-    rectangle(W / 2, 8 * (H / 9) - 40, 10, 20, "lightgrey")
-    rectangle(W / 2 - 4, 8 * (H / 9) - 20, 10, 40, "lightgrey")
-    rectangle(0, 8 * (H / 9) - 120, W, 60, "grey")
-    rectangle(0, 8 * (H / 9) - 120, W, 10, "darkgrey")
-    //Real Background
-    if (backgroundseats == true) {
-        // viewer(100, 100)
-        for (let y = 0; y < (H / 60) - 1; y += 1) {
-            for (let i = 0; i < (W / 60) + 180; i += 1) {
-                viewer(60 * i + y * -20, 50 * y + 25,)
+        clear()
+        moneyearned = 0
+        //Background
+        rectangle(0, 0, W, H, "grey")
+        rectangle(0, 8 * (H / 9) - 61, W, 21, "darkorange")
+        rectangle(W / 2 + 7, 8 * (H / 9) - 60, 10, 20, "lightgrey")
+        rectangle(W / 2, 8 * (H / 9) - 40, 10, 20, "lightgrey")
+        rectangle(W / 2 - 4, 8 * (H / 9) - 20, 10, 40, "lightgrey")
+        rectangle(0, 8 * (H / 9) - 120, W, 60, "grey")
+        rectangle(0, 8 * (H / 9) - 120, W, 10, "darkgrey")
+        //Real Background
+        if (backgroundseats == true) {
+            // viewer(100, 100)
+            for (let y = 0; y < (H / 60) - 1; y += 1) {
+                for (let i = 0; i < (W / 60) + 180; i += 1) {
+                    viewer(60 * i + y * -20, 50 * y + 25,)
+                }
+            }
+            rectangle(0, 8 * (H / 9) - 40, W, 60, "orange")
+        }
+        //hitbox
+        bhb.x = xpos + bollx - 20
+        bhb.y = ypos + bolly + 100
+        //timing stick
+        rectangle((W / 2) - 150, 7 * (H / 8), 300, 30, "grey")
+        rectangle((W / 2) - 145, (7 * (H / 8)) + 5, 290, 20, timercolor)
+        rectangle(hitterx, hittery, 20, 20, "lime")
+        //force
+        rectangle(forcex, forcey, force, 20, "pink")
+        //scores
+        rectangle(W / 2 - 200, H / 8, 400, 40, "lime")
+        rectangle(W / 2 - 195, H / 8 + 5, 390, 30, "green")
+        rectangle(W / 2 - 40, H / 8, 80, 40, "lime")
+        rectangle(W / 2 - 35, H / 8 + 5, 70, 30, "white")
+        text("P1: " + pointcounter, W / 2 - 190, H / 8 + 30, "", "white")
+        text("P2: " + (pointcounter - pointcounter / 3).toFixed(0), W / 2 + 100, H / 8 + 30, "", "white")
+        text(timertimer.toFixed(1), W / 2 - 32.5, H / 8 + 30, "", "black")
+
+        //money
+        text("$" + money, 20, H - 20, "", "Black")
+        //gametimer
+        if (timertimer > 0) {
+            timertimer -= 0.015
+        }
+        if (timertimer < 0) {
+            gameon = false
+            gameover = true
+            timertimer = 10
+        }
+        //Stats
+        if (debugmenu == true) {
+            bhb.drawOutline("red")
+            korghb1.drawOutline("green")
+            korghb2.drawOutline("orange")
+            korghb3.drawOutline("red")
+            timingstickhb.drawOutline("green")
+            hitterhb.drawOutline("red")
+
+            text("Boll Y " + bolly, 0, 10, fontsize, textcolor)
+            text("Boll X " + bollx, 0, 20, fontsize, textcolor)
+            text("Spring Timer " + runcounter, 0, 30, fontsize, textcolor)
+            text("Hand Position " + handpos, 0, 40, fontsize, textcolor)
+            text("Hand Y " + handY, 0, 50, fontsize, textcolor)
+            text("Springfart " + runspeed, 0, 60, fontsize, textcolor)
+            text("Studsfart " + ballspeed, 0, 70, fontsize, textcolor)
+            text("Spelarposition Y " + ypos, 0, 80, fontsize, textcolor)
+            text("Hopphöjd " + jumphojd, 0, 90, fontsize, textcolor)
+            text("Golvhöjd " + groundY.toFixed(0), 0, 100, fontsize, textcolor)
+            text("Poäng: " + pointcounter, 0, 110, fontsize, textcolor)
+            text("X Position: " + xpos, 0, 120, fontsize, textcolor)
+            text("Y Position: " + ypos, 0, 130, fontsize, textcolor)
+            text("World G: " + world.g, 0, 140, fontsize, textcolor)
+            text("World T: " + world.t, 0, 150, fontsize, textcolor)
+            text("Boll v0: " + b1.v0, 0, 160, fontsize, textcolor)
+            text("Timing Timer: " + timingcounter2, 0, 170, fontsize, textcolor)
+            text("Timing Stick X: " + ts.timingstickx, 0, 180, fontsize, textcolor)
+            text("Timing Stick Y: " + ts.timingsticky, 0, 190, fontsize, textcolor)
+            text("New Hitter: " + hitternew, 0, 200, fontsize, textcolor)
+            text("Hitter points: " + hitterhits, 0, 210, fontsize, textcolor)
+            text("Forcing: " + forcing, 0, 220, fontsize, textcolor)
+            text("Force: " + force, 0, 230, fontsize, textcolor)
+            text("Shooting Force: " + ballforce, 0, 240, fontsize, textcolor)
+            text("Restart: " + restartball, 0, 250, fontsize, textcolor)
+            text("Springer " + running, 0, 260, fontsize, textcolor)
+            text("Boll Hitbox X" + bhb.x, 0, 270, fontsize, textcolor)
+
+
+            text("hitboxes", 100, 70, fontsize, "red",)
+
+            if (balling == true) {
+                text("balling", 100, 100, fontsize, "red",)
+            }
+            if (idle == true) {
+                text("idle", 100, 100, fontsize, "red",)
+            }
+            if (running == true) {
+                text("running", 100, 90, fontsize, "red",)
+            }
+            if (jump == true) {
+                text("jumping", 100, 80, fontsize, "red",)
+            }
+            if (shooting == true) {
+
+                text("shooting", 100, 60, fontsize, "red",)
             }
         }
-        rectangle(0, 8 * (H / 9) - 40, W, 60, "orange")
-    }
-    //hitbox
-    bhb.x = xpos + bollx - 20
-    bhb.y = ypos + bolly + 100
-    //timing stick
-    rectangle((W / 2) - 150, 7 * (H / 8), 300, 30, "grey")
-    rectangle((W / 2) - 145, (7 * (H / 8)) + 5, 290, 20, timercolor)
-    rectangle(hitterx, hittery, 20, 20, "lime")
-    //force
-    rectangle(forcex, forcey, force, 20, "pink")
-    //scores
-    rectangle(W / 2 - 200, H / 8, 400, 40, "lime")
-    rectangle(W / 2 - 195, H / 8 + 5, 390, 30, "green")
-    rectangle(W / 2 - 40, H / 8, 80, 40, "lime")
-    rectangle(W / 2 - 35, H / 8 + 5, 70, 30, "white")
-    text("P1: " + pointcounter, W / 2 - 190, H / 8 + 30, "", "white")
-    text("P2: " + (pointcounter - pointcounter / 3).toFixed(0), W / 2 + 100, H / 8 + 30, "", "white")
-    text(timertimer.toFixed(1), W / 2 - 32.5, H / 8 + 30, "", "black")
-
-    //money
-    text("$" + money, 20, H - 20, "", "Black")
-    //gametimer
-    if (timertimer > 0) {
-        timertimer -= 0.015
-    }
-    if (timertimer < 0) {
-        gameon = false
-        gameover = true
-<<<<<<< HEAD
-<<<<<<< HEAD
-        timertimer = 10
-=======
-            timertimer = 20
->>>>>>> 7e7f9ba244f1892f3516f2b5ad76e81ffe3bfb34
-=======
-            timertimer = 20
->>>>>>> 7e7f9ba244f1892f3516f2b5ad76e81ffe3bfb34
-    }
-    //Stats
-    if (debugmenu == true) {
-        bhb.drawOutline("red")
-        korghb1.drawOutline("green")
-        korghb2.drawOutline("orange")
-        korghb3.drawOutline("red")
-        timingstickhb.drawOutline("green")
-        hitterhb.drawOutline("red")
-
-        text("Boll Y " + bolly, 0, 10, fontsize, textcolor)
-        text("Boll X " + bollx, 0, 20, fontsize, textcolor)
-        text("Spring Timer " + runcounter, 0, 30, fontsize, textcolor)
-        text("Hand Position " + handpos, 0, 40, fontsize, textcolor)
-        text("Hand Y " + handY, 0, 50, fontsize, textcolor)
-        text("Springfart " + runspeed, 0, 60, fontsize, textcolor)
-        text("Studsfart " + ballspeed, 0, 70, fontsize, textcolor)
-        text("Spelarposition Y " + ypos, 0, 80, fontsize, textcolor)
-        text("Hopphöjd " + jumphojd, 0, 90, fontsize, textcolor)
-        text("Golvhöjd " + groundY.toFixed(0), 0, 100, fontsize, textcolor)
-        text("Poäng: " + pointcounter, 0, 110, fontsize, textcolor)
-        text("X Position: " + xpos, 0, 120, fontsize, textcolor)
-        text("Y Position: " + ypos, 0, 130, fontsize, textcolor)
-        text("World G: " + world.g, 0, 140, fontsize, textcolor)
-        text("World T: " + world.t, 0, 150, fontsize, textcolor)
-        text("Boll v0: " + b1.v0, 0, 160, fontsize, textcolor)
-        text("Timing Timer: " + timingcounter2, 0, 170, fontsize, textcolor)
-        text("Timing Stick X: " + ts.timingstickx, 0, 180, fontsize, textcolor)
-        text("Timing Stick Y: " + ts.timingsticky, 0, 190, fontsize, textcolor)
-        text("New Hitter: " + hitternew, 0, 200, fontsize, textcolor)
-        text("Hitter points: " + hitterhits, 0, 210, fontsize, textcolor)
-        text("Forcing: " + forcing, 0, 220, fontsize, textcolor)
-        text("Force: " + force, 0, 230, fontsize, textcolor)
-        text("Shooting Force: " + ballforce, 0, 240, fontsize, textcolor)
-        text("Restart: " + restartball, 0, 250, fontsize, textcolor)
-        text("Springer " + running, 0, 260, fontsize, textcolor)
-        text("Boll Hitbox X" + bhb.x, 0, 270, fontsize, textcolor)
 
 
-        text("hitboxes", 100, 70, fontsize, "red",)
-
-        if (balling == true) {
-            text("balling", 100, 100, fontsize, "red",)
-        }
-        if (idle == true) {
-            text("idle", 100, 100, fontsize, "red",)
-        }
-        if (running == true) {
-            text("running", 100, 90, fontsize, "red",)
-        }
-        if (jump == true) {
-            text("jumping", 100, 80, fontsize, "red",)
-        }
-        if (shooting == true) {
-
-            text("shooting", 100, 60, fontsize, "red",)
-        }
-    }
-
-
-    //Jumping stuff
-    if (idle == true) {
-        if (jump == true) {
-            bolly = 2200
-
-        }
-    }
-    //Balling Code
-    if (balling == true) {
-        bollx = 190
-        if (bolly <= handpos) {
-            bollstudsar = false
-        }
-        if (bollstudsar == false) {
-            bolly += ballspeed
-        }
-        if (bolly > groundY - 30) {
-            bollstudsar = true
-        }
-        if (bollstudsar == true) {
-            bolly -= ballspeed
-        }
-
-    } else {
+        //Jumping stuff
         if (idle == true) {
             if (jump == true) {
-                bolly = -100
-                bollx = 155
+                bolly = 2200
+
             }
+        }
+        //Balling Code
+        if (balling == true) {
+            bollx = 190
+            if (bolly <= handpos) {
+                bollstudsar = false
+            }
+            if (bollstudsar == false) {
+                bolly += ballspeed
+            }
+            if (bolly > groundY - 30) {
+                bollstudsar = true
+            }
+            if (bollstudsar == true) {
+                bolly -= ballspeed
+            }
+
+        } else {
             if (idle == true) {
-                if (jump == false) {
-                    if (shooting == false) {
-                        bolly = 60
-                        bollx = 190
-                    } else {
+                if (jump == true) {
+                    bolly = -100
+                    bollx = 155
+                }
+                if (idle == true) {
+                    if (jump == false) {
+                        if (shooting == false) {
+                            bolly = 60
+                            bollx = 190
+                        } else {
+                        }
                     }
                 }
-            }
-        } else {
-            bolly = 65
-            bollx = 190
-            hoppbolly = 0
-        }
-    }
-    //throw
-    if (shooting == true) {
-        if (bolly < 200) {
-            world.t += throwspeed
-            bolly = 80 + (b1.v0 * Math.sin(-Math.PI / ballforce) * world.t + ((world.g * world.t * world.t) / ballforce))
-            bollx = 190 + (b1.v0 * Math.cos(-Math.PI / ballforce) * world.t)
-        }
-        if (bollx > 700) {
-            world.t = 0
-            shooting = false
-            restartball = true
-        }
-    }
-
-
-    //timing game
-    function newhitter() {
-        hitterrandom = randomInt(0, 270)
-        hitterx = (W / 2) - 145 + hitterrandom
-        hittery = 7 * (H / 8) + 5
-        hitterhb.x = (W / 2) - 145 + hitterrandom
-        hitterhb.y = 7 * (H / 8) + 5
-    }
-    if (greentored == false) {
-        if (keyboard.space) {
-            keyboard.space = false
-            if (forcing == false) {
-                timingcounter2 = 0
-                timing = true
-                ts.timingstickx = (W / 2) - 150
-                ts.timingsticky = 7 * (H / 8) - 5
-                timingstickhb.x = (W / 2) - 150
-                timingstickhb.y = 7 * (H / 8) - 5
-                hitterrandom = randomInt(0, 130)
-                hitterx = (W / 2) - 145 + hitterrandom
-                hittery = 7 * (H / 8) + 5
-                hitterhb.x = (W / 2) - 145 + hitterrandom
-                hitterhb.y = 7 * (H / 8) + 5
-                greentored = true
+            } else {
+                bolly = 65
+                bollx = 190
+                hoppbolly = 0
             }
         }
-    }
-    if (greentored == true) {
-        if (timing == true) {
-            timercolor = "green"
+        //throw
+        if (shooting == true) {
+            if (bolly < 200) {
+                world.t += throwspeed
+                bolly = 80 + (b1.v0 * Math.sin(-Math.PI / ballforce) * world.t + ((world.g * world.t * world.t) / ballforce))
+                bollx = 190 + (b1.v0 * Math.cos(-Math.PI / ballforce) * world.t)
+            }
+            if (bollx > 700) {
+                world.t = 0
+                shooting = false
+                restartball = true
+            }
+        }
+
+
+        //timing game
+        function newhitter() {
+            hitterrandom = randomInt(0, 270)
+            hitterx = (W / 2) - 145 + hitterrandom
+            hittery = 7 * (H / 8) + 5
+            hitterhb.x = (W / 2) - 145 + hitterrandom
+            hitterhb.y = 7 * (H / 8) + 5
+        }
+        if (greentored == false) {
             if (keyboard.space) {
                 keyboard.space = false
-                if (timingstickhb.intersects(hitterhb)) {
-                    newhitter()
-                    hitterhits += 2
-                } else {
-                    newhitter()
-                    if (hitterhits != 0) {
-                        hitterhits -= 1
-                    }
+                if (forcing == false) {
+                    timingcounter2 = 0
+                    timing = true
+                    ts.timingstickx = (W / 2) - 150
+                    ts.timingsticky = 7 * (H / 8) - 5
+                    timingstickhb.x = (W / 2) - 150
+                    timingstickhb.y = 7 * (H / 8) - 5
+                    hitterrandom = randomInt(0, 130)
+                    hitterx = (W / 2) - 145 + hitterrandom
+                    hittery = 7 * (H / 8) + 5
+                    hitterhb.x = (W / 2) - 145 + hitterrandom
+                    hitterhb.y = 7 * (H / 8) + 5
+                    greentored = true
                 }
             }
         }
-    }
-
-    if (hitterhits >= 2) {
-        forcex = (W / 2) - 150 + 5
-        forcey = 7 * (H / 8) + 5
-        timercolor = "red"
-        timing = false
-        forcing = true
-        hitterx = -30
-        hittery = 0
-        ts.timingstickx = -10
-        ts.timingsticky = 0
-        hitterhb.x = -40
-        hitterhb.y = 0
-        timingstickhb.x = -30
-        timingstickhb.y = 0
-    }
-
-
-
-    if (timing == true) {
-        if (timingcounter2 <= 0) {
-            timingcounter = true
-        }
-        if (timingcounter == true) {
-            ts.timingstickx += timingspeed
-            timingcounter2 += timingspeed
-            timingstickhb.x += timingspeed
-        }
-        if (timingcounter2 >= 300) {
-            timingcounter = false
-        }
-        if (timingcounter == false) {
-            ts.timingstickx -= timingspeed
-            timingcounter2 -= timingspeed
-            timingstickhb.x -= timingspeed
-        }
-    } else {
-        timing = false
-        timingcounter2 = 0
-    }
-
-
-    if (keyboard.o) {
-        pointcounter += 1
-    }
-
-    //Force
-    if (forcing == true) {
-        if (keyboard.space) {
-            keyboard.space = false
-            if (force > 100) {
-                ballforce = 6
-            } else {
-                ballforce = 4
-            }
-            shooting = true
-            forcing = false
-            timing = false
-            throwspeed = 0.1
-
-        }
-    }
-    if (forcing == true) {
-        if (force == 0) {
-            forcecounter = true
-        }
-        if (forcecounter == true) {
-            force += 5
-        }
-        if (force >= 290) {
-            forcecounter = false
-        }
-        if (forcecounter == false) {
-            force -= 5
-        }
-    }
-
-
-
-
-
-
-    //Button Presses
-    if (keyboard.l) {
-        keyboard.l = false
-        if (debugmenu != true) {
-            debugmenu = true
-        } else {
-            debugmenu = false
-        }
-    }
-    if (jump == false) {
-
-        if (keyboard.digit1) {
-            balling = true
-            idle = false
-        }
-    }
-    if (jump == false) {
-
-        if (keyboard.digit2) {
-            balling = false
-            idle = true
-        }
-    }
-    //Cheats
-    if (keyboard.i) {
-        shooting = true
-    }
-    if (keyboard.m) {
-        forcing = true
-    }
-    if (keyboard.digit0) {
-        keyboard.digit0 = false
-        ballforce -= 0.5
-    }
-    if (keyboard.digit9) {
-        keyboard.digit9 = false
-        ballforce += 0.5
-    }
-    //Jumping code
-    if (keyboard.w) {
-        jump = true
-        keyboard.w = false
-    }
-    if (jump == true) {
-        if (ypos > 100) {
-            jumphojd = false
-        }
-        if (jumphojd == false) {
-            ypos -= jumpspeed
-            handpos -= jumpspeed
-            if (idle == true) {
-                hoppbolly -= jumpspeed
-            }
-        }
-        if (ypos < 0) {
-            jumphojd = true
-        }
-        if (jumphojd == true) {
-            ypos += jumpspeed
-            handpos += jumpspeed
-            if (idle == true) {
-                hoppbolly += jumpspeed
-            }
-        }
-        if (ypos == 100) {
-            if (jumphojd == true) {
-                jump = false
-            }
-        }
-    }
-    //running
-    if (shooting == false) {
-        if (xpos >= -100) {
-
-            if (keyboard.a) {
-                xpos -= 5
-                running = true
-            } else if (keyboard.d) {
-                running = true
-            } else {
-                running = false
-            }
-
-
-        }
-        if (xpos < W - 195) {
-            if (keyboard.d) {
-                xpos += 5
-                running = true
-            } else if (keyboard.a) {
-                running = true
-            } else {
-                running = false
-            }
-
-        }
-    }
-
-
-    //Counter
-    if (running == true) {
-        if (runcounter == 0) {
-            runcounter = 100
-        } else {
-            runcounter -= 0.5
-        }
-    }
-
-    //Checkings 
-    if (restartball == true) {
-        timing = false
-        shooting = false
-        forcing = false
-        hitterhits = 0
-        force = 0
-        greentored = false
-        timercolor = "green"
-        restartball = false
-    }
-    if (skincolor == rgba(90, 69, 60)) {
-        ballspeed = 10
-        runspeed = 5
-        jumpspeed = 8
-    } else if (skincolor == rgba(165, 126, 110)) {
-
-        ballspeed = 10
-        runspeed = 5
-        jumpspeed = 8
-    } else {
-        ballspeed = 10
-        runspeed = 5
-        jumpspeed = 8
-    }
-    if (idle == true || shooting == true) {
-        pointcheck = false
-        if (jumphojd == true || shooting == true) {
-            if (bhb.intersects(korghb1)) {
-                if (bhb.intersects(korghb2)) {
-                    if (bhb.intersects(korghb3)) {
-                        if (xpos > 200) {
-                            if (pointcheck == false) {
-
-                                pointcounter += 1
-                                pointcheck = true
-                            }
-                        } else if (xpos > 100 && xpos < 200) {
-                            if (pointcheck == false) {
-                                pointcounter += 2
-                                pointcheck = true
-                            }
-                        } else {
-                            if (pointcheck == false) {
-                                pointcounter += 3
-                                pointcheck = true
-                            }
+        if (greentored == true) {
+            if (timing == true) {
+                timercolor = "green"
+                if (keyboard.space) {
+                    keyboard.space = false
+                    if (timingstickhb.intersects(hitterhb)) {
+                        newhitter()
+                        hitterhits += 2
+                    } else {
+                        newhitter()
+                        if (hitterhits != 0) {
+                            hitterhits -= 1
                         }
-
-
                     }
                 }
             }
         }
-    }
 
-    //Customizations
-    if (keyboard.digit4) {
-        skincolor = rgba(210, 161, 140)
-    }
-    if (keyboard.digit5) {
-        skincolor = rgba(165, 126, 110)
-    }
-    if (keyboard.digit6) {
-        skincolor = rgba(90, 69, 60)
-    }
-    if (keyboard.digit7) {
-        keyboard.digit7 = false
-        if (hairlength == 10) {
-            hairlength = 50
-        } else {
-            hairlength = 10
+        if (hitterhits >= 2) {
+            forcex = (W / 2) - 150 + 5
+            forcey = 7 * (H / 8) + 5
+            timercolor = "red"
+            timing = false
+            forcing = true
+            hitterx = -30
+            hittery = 0
+            ts.timingstickx = -10
+            ts.timingsticky = 0
+            hitterhb.x = -40
+            hitterhb.y = 0
+            timingstickhb.x = -30
+            timingstickhb.y = 0
         }
+
+
+
+        if (timing == true) {
+            if (timingcounter2 <= 0) {
+                timingcounter = true
+            }
+            if (timingcounter == true) {
+                ts.timingstickx += timingspeed
+                timingcounter2 += timingspeed
+                timingstickhb.x += timingspeed
+            }
+            if (timingcounter2 >= 300) {
+                timingcounter = false
+            }
+            if (timingcounter == false) {
+                ts.timingstickx -= timingspeed
+                timingcounter2 -= timingspeed
+                timingstickhb.x -= timingspeed
+            }
+        } else {
+            timing = false
+            timingcounter2 = 0
+        }
+
+
+        if (keyboard.o) {
+            pointcounter += 1
+        }
+
+        //Force
+        if (forcing == true) {
+            if (keyboard.space) {
+                keyboard.space = false
+                if (force > 100) {
+                    ballforce = 6
+                } else {
+                    ballforce = 4
+                }
+                shooting = true
+                forcing = false
+                timing = false
+                throwspeed = 0.1
+
+            }
+        }
+        if (forcing == true) {
+            if (force == 0) {
+                forcecounter = true
+            }
+            if (forcecounter == true) {
+                force += 5
+            }
+            if (force >= 290) {
+                forcecounter = false
+            }
+            if (forcecounter == false) {
+                force -= 5
+            }
+        }
+
+
+
+
+
+
+        //Button Presses
+        if (keyboard.l) {
+            keyboard.l = false
+            if (debugmenu != true) {
+                debugmenu = true
+            } else {
+                debugmenu = false
+            }
+        }
+        if (jump == false) {
+
+            if (keyboard.digit1) {
+                balling = true
+                idle = false
+            }
+        }
+        if (jump == false) {
+
+            if (keyboard.digit2) {
+                balling = false
+                idle = true
+            }
+        }
+        //Cheats
+        if (keyboard.i) {
+            shooting = true
+        }
+        if (keyboard.m) {
+            forcing = true
+        }
+        if (keyboard.digit0) {
+            keyboard.digit0 = false
+            ballforce -= 0.5
+        }
+        if (keyboard.digit9) {
+            keyboard.digit9 = false
+            ballforce += 0.5
+        }
+        //Jumping code
+        if (keyboard.w) {
+            jump = true
+            keyboard.w = false
+        }
+        if (jump == true) {
+            if (ypos > 100) {
+                jumphojd = false
+            }
+            if (jumphojd == false) {
+                ypos -= jumpspeed
+                handpos -= jumpspeed
+                if (idle == true) {
+                    hoppbolly -= jumpspeed
+                }
+            }
+            if (ypos < 0) {
+                jumphojd = true
+            }
+            if (jumphojd == true) {
+                ypos += jumpspeed
+                handpos += jumpspeed
+                if (idle == true) {
+                    hoppbolly += jumpspeed
+                }
+            }
+            if (ypos == 100) {
+                if (jumphojd == true) {
+                    jump = false
+                }
+            }
+        }
+        //running
+        if (shooting == false) {
+            if (xpos >= -100) {
+
+                if (keyboard.a) {
+                    xpos -= 5
+                    running = true
+                } else if (keyboard.d) {
+                    running = true
+                } else {
+                    running = false
+                }
+
+
+            }
+            if (xpos < W - 195) {
+                if (keyboard.d) {
+                    xpos += 5
+                    running = true
+                } else if (keyboard.a) {
+                    running = true
+                } else {
+                    running = false
+                }
+
+            }
+        }
+
+
+        //Counter
+        if (running == true) {
+            if (runcounter == 0) {
+                runcounter = 100
+            } else {
+                runcounter -= 0.5
+            }
+        }
+
+        //Checkings 
+        if (restartball == true) {
+            timing = false
+            shooting = false
+            forcing = false
+            hitterhits = 0
+            force = 0
+            greentored = false
+            timercolor = "green"
+            restartball = false
+        }
+        if (skincolor == rgba(90, 69, 60)) {
+            ballspeed = 10
+            runspeed = 5
+            jumpspeed = 8
+        } else if (skincolor == rgba(165, 126, 110)) {
+
+            ballspeed = 10
+            runspeed = 5
+            jumpspeed = 8
+        } else {
+            ballspeed = 10
+            runspeed = 5
+            jumpspeed = 8
+        }
+        if (idle == true || shooting == true) {
+            pointcheck = false
+            if (jumphojd == true || shooting == true) {
+                if (bhb.intersects(korghb1)) {
+                    if (bhb.intersects(korghb2)) {
+                        if (bhb.intersects(korghb3)) {
+                            if (xpos > 200) {
+                                if (pointcheck == false) {
+
+                                    pointcounter += 1
+                                    pointcheck = true
+                                }
+                            } else if (xpos > 100 && xpos < 200) {
+                                if (pointcheck == false) {
+                                    pointcounter += 2
+                                    pointcheck = true
+                                }
+                            } else {
+                                if (pointcheck == false) {
+                                    pointcounter += 3
+                                    pointcheck = true
+                                }
+                            }
+
+
+                        }
+                    }
+                }
+            }
+        }
+
+        //Customizations
+        if (keyboard.digit4) {
+            skincolor = rgba(210, 161, 140)
+        }
+        if (keyboard.digit5) {
+            skincolor = rgba(165, 126, 110)
+        }
+        if (keyboard.digit6) {
+            skincolor = rgba(90, 69, 60)
+        }
+        if (keyboard.digit7) {
+            keyboard.digit7 = false
+            if (hairlength == 10) {
+                hairlength = 50
+            } else {
+                hairlength = 10
+            }
+        }
+        //inrekorg
+        rectangle(W - 68, basketheighty - 100, 2, 10, netcolor)
+        rectangle(W - 64, basketheighty - 100, 2, 10, netcolor)
+        rectangle(W - 60, basketheighty - 100, 2, 10, netcolor)
+        rectangle(W - 56, basketheighty - 100, 2, 10, netcolor)
+        rectangle(W - 52, basketheighty - 100, 2, 10, netcolor)
+        rectangle(W - 48, basketheighty - 100, 2, 10, netcolor)
+        rectangle(W - 44, basketheighty - 100, 2, 10, netcolor)
+        rectangle(W - 40, basketheighty - 100, 2, 10, netcolor)
+        rectangle(W - 36, basketheighty - 100, 2, 10, netcolor)
+        rectangle(W - 32, basketheighty - 100, 2, 10, netcolor)
+        rectangle(W - 28, basketheighty - 100, 2, 10, netcolor)
+        rectangle(W - 24, basketheighty - 100, 2, 10, netcolor)
+        rectangle(W - 20, basketheighty - 100, 2, 10, netcolor)
+        rectangle(W - 16, basketheighty - 100, 2, 10, netcolor)
+        rectangle(W - 66, basketheighty - 90, 2, 10, netcolor)
+        rectangle(W - 58, basketheighty - 90, 2, 10, netcolor)
+        rectangle(W - 50, basketheighty - 90, 2, 10, netcolor)
+        rectangle(W - 42, basketheighty - 90, 2, 10, netcolor)
+        rectangle(W - 34, basketheighty - 90, 2, 10, netcolor)
+        rectangle(W - 26, basketheighty - 90, 2, 10, netcolor)
+        rectangle(W - 18, basketheighty - 90, 2, 10, netcolor)
+        rectangle(W - 64, basketheighty - 80, 2, 20, netcolor)
+        rectangle(W - 60, basketheighty - 80, 2, 20, netcolor)
+        rectangle(W - 56, basketheighty - 80, 2, 20, netcolor)
+        rectangle(W - 52, basketheighty - 80, 2, 20, netcolor)
+        rectangle(W - 48, basketheighty - 80, 2, 20, netcolor)
+        rectangle(W - 44, basketheighty - 80, 2, 20, netcolor)
+        rectangle(W - 40, basketheighty - 80, 2, 20, netcolor)
+        rectangle(W - 36, basketheighty - 80, 2, 20, netcolor)
+        rectangle(W - 32, basketheighty - 80, 2, 20, netcolor)
+        rectangle(W - 28, basketheighty - 80, 2, 20, netcolor)
+        rectangle(W - 24, basketheighty - 80, 2, 20, netcolor)
+        rectangle(W - 20, basketheighty - 80, 2, 20, netcolor)
+        rectangle(W - 62, basketheighty - 60, 2, 10, netcolor)
+        rectangle(W - 58, basketheighty - 60, 2, 10, netcolor)
+        rectangle(W - 54, basketheighty - 60, 2, 10, netcolor)
+        rectangle(W - 50, basketheighty - 60, 2, 10, netcolor)
+        rectangle(W - 46, basketheighty - 60, 2, 10, netcolor)
+        rectangle(W - 42, basketheighty - 60, 2, 10, netcolor)
+        rectangle(W - 38, basketheighty - 60, 2, 10, netcolor)
+        rectangle(W - 34, basketheighty - 60, 2, 10, netcolor)
+        rectangle(W - 30, basketheighty - 60, 2, 10, netcolor)
+        rectangle(W - 26, basketheighty - 60, 2, 10, netcolor)
+        rectangle(W - 22, basketheighty - 60, 2, 10, netcolor)
+        rectangle(W - 60, basketheighty - 50, 38, 2, netcolor)
+
+
+        b1.update()
+        //korg
+        p1.update()
+        ts.update()
+        rectangle(W - 70, H / 2 - 102, 70, 5, "black")
+        rectangle(W - 5, H / 2 - 152, 5, 70, "red")
     }
-    //inrekorg
-    rectangle(W - 68, basketheighty - 100, 2, 10, netcolor)
-    rectangle(W - 64, basketheighty - 100, 2, 10, netcolor)
-    rectangle(W - 60, basketheighty - 100, 2, 10, netcolor)
-    rectangle(W - 56, basketheighty - 100, 2, 10, netcolor)
-    rectangle(W - 52, basketheighty - 100, 2, 10, netcolor)
-    rectangle(W - 48, basketheighty - 100, 2, 10, netcolor)
-    rectangle(W - 44, basketheighty - 100, 2, 10, netcolor)
-    rectangle(W - 40, basketheighty - 100, 2, 10, netcolor)
-    rectangle(W - 36, basketheighty - 100, 2, 10, netcolor)
-    rectangle(W - 32, basketheighty - 100, 2, 10, netcolor)
-    rectangle(W - 28, basketheighty - 100, 2, 10, netcolor)
-    rectangle(W - 24, basketheighty - 100, 2, 10, netcolor)
-    rectangle(W - 20, basketheighty - 100, 2, 10, netcolor)
-    rectangle(W - 16, basketheighty - 100, 2, 10, netcolor)
-    rectangle(W - 66, basketheighty - 90, 2, 10, netcolor)
-    rectangle(W - 58, basketheighty - 90, 2, 10, netcolor)
-    rectangle(W - 50, basketheighty - 90, 2, 10, netcolor)
-    rectangle(W - 42, basketheighty - 90, 2, 10, netcolor)
-    rectangle(W - 34, basketheighty - 90, 2, 10, netcolor)
-    rectangle(W - 26, basketheighty - 90, 2, 10, netcolor)
-    rectangle(W - 18, basketheighty - 90, 2, 10, netcolor)
-    rectangle(W - 64, basketheighty - 80, 2, 20, netcolor)
-    rectangle(W - 60, basketheighty - 80, 2, 20, netcolor)
-    rectangle(W - 56, basketheighty - 80, 2, 20, netcolor)
-    rectangle(W - 52, basketheighty - 80, 2, 20, netcolor)
-    rectangle(W - 48, basketheighty - 80, 2, 20, netcolor)
-    rectangle(W - 44, basketheighty - 80, 2, 20, netcolor)
-    rectangle(W - 40, basketheighty - 80, 2, 20, netcolor)
-    rectangle(W - 36, basketheighty - 80, 2, 20, netcolor)
-    rectangle(W - 32, basketheighty - 80, 2, 20, netcolor)
-    rectangle(W - 28, basketheighty - 80, 2, 20, netcolor)
-    rectangle(W - 24, basketheighty - 80, 2, 20, netcolor)
-    rectangle(W - 20, basketheighty - 80, 2, 20, netcolor)
-    rectangle(W - 62, basketheighty - 60, 2, 10, netcolor)
-    rectangle(W - 58, basketheighty - 60, 2, 10, netcolor)
-    rectangle(W - 54, basketheighty - 60, 2, 10, netcolor)
-    rectangle(W - 50, basketheighty - 60, 2, 10, netcolor)
-    rectangle(W - 46, basketheighty - 60, 2, 10, netcolor)
-    rectangle(W - 42, basketheighty - 60, 2, 10, netcolor)
-    rectangle(W - 38, basketheighty - 60, 2, 10, netcolor)
-    rectangle(W - 34, basketheighty - 60, 2, 10, netcolor)
-    rectangle(W - 30, basketheighty - 60, 2, 10, netcolor)
-    rectangle(W - 26, basketheighty - 60, 2, 10, netcolor)
-    rectangle(W - 22, basketheighty - 60, 2, 10, netcolor)
-    rectangle(W - 60, basketheighty - 50, 38, 2, netcolor)
-
-
-    b1.update()
-    //korg
-    p1.update()
-    ts.update()
-    rectangle(W - 70, H / 2 - 102, 70, 5, "black")
-    rectangle(W - 5, H / 2 - 152, 5, 70, "red")
-}
 })
 //# sourceMappingURL=app.js.map
